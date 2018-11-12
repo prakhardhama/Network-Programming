@@ -1,0 +1,25 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+	int fd[2];
+	char c;
+	pid_t pid;	
+	pipe(fd);
+	if(fork()==0)
+	{
+		sleep(1);
+		read(fd[0], &c, 1);
+		printf("child= %c\n", c);
+		if(write(fd[0], "c", 1)==0)
+		printf("wtf");		
+		exit(0);
+	}
+	write(fd[1],"p", 1);
+	sleep(1);
+	read(fd[1], &c, 1);
+	printf("parent= %c\n", c);
+	exit(0);
+}
+	

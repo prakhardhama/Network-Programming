@@ -1,0 +1,11 @@
+#include<stdio.h>
+#include<signal.h>
+#include<stdlib.h>
+#include<sys/wait.h>
+
+int main()
+{
+	sigset_t set;
+	sigemptyset(&set);
+	printf("set= %x\n",set);
+}
